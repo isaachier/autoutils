@@ -5,7 +5,7 @@ set(__autoutils_write_to_config_header 1)
 
 macro(autoutils_write_to_config_header line)
   if(NOT DEFINED autoutils_config_path)
-    set(CONFIG_PATH "${CMAKE_CURRENT_BINARY_DIR}/config.h")
+    set(autoutils_config_path "${CMAKE_CURRENT_BINARY_DIR}/config.h")
   endif()
   file(APPEND ${CONFIG_PATH} "${line}\n")
 endmacro()
