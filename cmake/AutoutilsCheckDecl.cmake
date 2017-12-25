@@ -1,7 +1,7 @@
-if(__AUTOUTILS_CHECK_DECL)
+if(__autoutils_check_decl)
   return()
 endif()
-set(__AUTOUTILS_CHECK_DECL 1)
+set(__autoutils_check_decl 1)
 
 include(CheckSymbolExists)
 
