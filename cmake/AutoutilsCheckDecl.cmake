@@ -1,13 +1,13 @@
-if(__CHECK_DECL)
+if(__AUTOUTILS_CHECK_DECL)
   return()
 endif()
-set(__CHECK_DECL 1)
+set(__AUTOUTILS_CHECK_DECL 1)
 
 include(CheckSymbolExists)
 
-include(WriteToConfigHeader)
+include(AutoutilsWriteToConfigHeader)
 
-macro(check_decl decl)
+macro(autoutils_check_decl decl)
   string(MAKE_C_IDENTIFIER "${decl}" _var)
   string(TOUPPER "${_var}" _var)
   if(NOT DEFINED _have_symbol_${_var})
@@ -17,7 +17,7 @@ macro(check_decl decl)
     else()
       set(HAVE_DECL_${_var} 0)
     endif()
-    write_to_config_header(
+    autoutils_write_to_config_header(
       "#define HAVE_DECL_${_var} ${HAVE_DECL_${_var}}")
   endif()
 endmacro()

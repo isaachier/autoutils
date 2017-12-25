@@ -1,0 +1,22 @@
+if(__AUTUTILS_CHECK_HEADER)
+  return()
+endif()
+set(__AUTUTILS_CHECK_HEADER 1)
+
+include(AututilsCheckIncludeFile)
+
+include(AututilsWriteToConfigHeader)
+
+macro(aututils_check_header header)
+  string(MAKE_C_IDENTIFIER "${header}" _var)
+  string(TOUPPER "${_var}" _var)
+  if(NOT DEFINED _have_include_${_var})
+    aututils_check_include_file(${header} _have_include_${_var})
+    if(_have_include_${_var})
+      set(HAVE_${_var} ON)
+      aututils_write_to_config_header("#define HAVE_${_var}")
+    else()
+      aututils_write_to_config_header("/* #undef HAVE_${_var} */")
+    endif()
+  endif()
+endmacro()

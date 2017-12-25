@@ -1,0 +1,22 @@
+if(__AUTUTILS_CHECK_LIB)
+  return()
+endif()
+set(__AUTUTILS_CHECK_LIB 1)
+
+include(AututilsCheckLibraryExists)
+
+include(AututilsWriteToConfigHeader)
+
+macro(aututils_check_lib lib func)
+  if(NOT DEFINED _exists_${lib})
+    aututils_check_library_exists(${lib} ${func} "" _exists_${lib})
+    string(MAKE_C_IDENTIFIER "${lib}" _var)
+    string(TOUPPER "${_var}" _var)
+    if(_exists_${lib})
+      set(HAVE_LIB${_var} ON)
+      aututils_write_to_config_header("#define HAVE_LIB${_var}")
+    else()
+      aututils_write_to_config_header("/* #undef HAVE_LIB${_var} */")
+    endif()
+  endif()
+endmacro()

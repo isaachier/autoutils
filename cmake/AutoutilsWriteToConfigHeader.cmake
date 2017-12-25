@@ -1,9 +1,9 @@
-if(__WRITE_TO_CONFIG_HEADER)
+if(__AUTUTILS_WRITE_TO_CONFIG_HEADER)
   return()
 endif()
-set(__WRITE_TO_CONFIG_HEADER 1)
+set(__AUTUTILS_WRITE_TO_CONFIG_HEADER 1)
 
-macro(write_to_config_header line)
+macro(aututils_write_to_config_header line)
   if(NOT DEFINED CONFIG_PATH)
     set(CONFIG_PATH "${CMAKE_CURRENT_BINARY_DIR}/config.h")
   endif()
