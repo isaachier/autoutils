@@ -57,3 +57,15 @@ for details.
 
 `autoutils_write_to_config_header` appends a given line to `config.h` in
 `${CMAKE_CURRENT_BINARY_DIR}`.
+
+## Generated Config
+
+By default, the generated config is located in
+`${CMAKE_CURRENT_BINARY_DIR}/config.h`, but can be set before calling any
+modules using the cache variable `autoutils_config_path` like so:
+
+```
+set(autoutils_config_path
+    "${CMAKE_CURRENT_BINARY_DIR}/some/other/location/config.h"
+    CACHE FILEPATH FORCE)
+```
